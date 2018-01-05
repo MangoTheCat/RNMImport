@@ -3,8 +3,8 @@
 \docType{methods}
 \name{getControlStatements}
 \alias{getControlStatements}
-\alias{getControlStatements,NMProblem-method}
 \alias{getControlStatements,NMRun-method}
+\alias{getControlStatements,NMProblem-method}
 \title{Extract list of parsed control statement}
 \usage{
 getControlStatements(obj, ...)
@@ -27,4 +27,3 @@ Extracts the list of "parsed control statements" associated with a problem or ru
 \author{
 Mango Solutions
 }
-

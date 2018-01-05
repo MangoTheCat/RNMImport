@@ -20,4 +20,3 @@ Sets a new path globally to be used by the user.
 \author{
 Mango Solutions
 }
-

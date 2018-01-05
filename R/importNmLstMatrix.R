@@ -1,5 +1,6 @@
 #' Obtains a matrix from a chunk of report file text (such as the estimates of sigma or omega).  
 #' It is meant to be used on elements of the list returned by sectionLst
+#' @name importNmLstMatrix
 #' @title Extract matrix from a report file
 #' @param txt [C,+] character vector of lines of text
 #' @param condensed [L,1] Logical flag.  If TRUE, will use "condensed" matrix notation 

@@ -1,12 +1,15 @@
 
-#' Parse $EST statements from a control file and return a list of parsed statements (one element for each $EST) 
+#' @name importNmModEst
+#' @aliases .importNmModEst
+#' @title import NONMEM Model Estimation Statement
+#' @description Parse $EST statements from a control file and return a list of parsed statements (one element for each $EST) 
 #' At the moment, these are just strings, but this will likely change
 #' @param txt A vector of strings containing the text of the $EST statements to be parsed 
 #' @return A matrix of parsed statements.  Each row of the matrix will correspond to one parsed $EST statement.
 #' These will have 4 columns
 #' @author Mango Solutions
 #' @noRd
-
+#' @export
 
 .importNmModEst <- function(txt )
 {

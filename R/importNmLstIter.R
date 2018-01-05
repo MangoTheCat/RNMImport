@@ -1,7 +1,7 @@
 
 
 #' Imports the list file parameter iteration information as a data.frame
-#' @param iterList {LIST] A list of iteration text chunks, typically obtained from calling sectionLst 
+#' @param iterList [LIST] A list of iteration text chunks, typically obtained from calling sectionLst 
 #' @return A 3 column data.frame with the iterations for each parameter estimate
 #' @note Based on code by R. Francois, R. Pugh and J. James
 #' @author Mango Solutions

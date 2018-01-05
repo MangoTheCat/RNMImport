@@ -20,4 +20,3 @@ Modifies the global default subset for loaded objects, and can toggle if it is a
 \author{
 Mango Solutions
 }
-

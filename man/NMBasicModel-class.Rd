@@ -14,11 +14,19 @@ This class holds the information for a standard single NONMEM problem
 
 \item{\code{objectiveFinal}}{The numeric value of the objective function minimum}
 
+\item{\code{thetaInitial}}{Initial theta values}
+
 \item{\code{thetaFinal}}{Final estimates of the "thetas", together with the standard errors, if available (as a matrix with 1 or 2 rows)}
+
+\item{\code{sigmaInitial}}{Initial sigma values}
 
 \item{\code{sigmaFinal}}{Final estimates of the "sigmas", together with the standard errors, if available (as an array  with 1 or 2 matrices)}
 
+\item{\code{omegaInitial}}{Initial omega values}
+
 \item{\code{omegaFinal}}{Final estimates of the "omegas", together with the standard errors, if available (as an array  with 1 or 2 matrices)}
+
+\item{\code{parameterCorMatrix}}{The cross-correlation matrix of the parameter estimators, if available}
 
 \item{\code{parameterCovMatrix}}{The variance-covariance of the parameter estimators, if available}
 

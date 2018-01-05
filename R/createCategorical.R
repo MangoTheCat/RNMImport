@@ -27,14 +27,14 @@
 #' x <- addDerivedCategorical(mtcars, "mpg", breaks = 6, binType = "counts" )
 #' show(x$mpg.CUT)
 #' @author Mango Solutions
-
+#' @export
 
 addDerivedCategorical <- function(obj, varName, newVar = paste(varName, ".CUT", sep = ""), breaks = 5, binType = "range", labels = NULL, ...)
 {
 	NULL
 }
-setGeneric("addDerivedCategorical")
 
+setGeneric("addDerivedCategorical")
 
 #' @importFrom stats quantile
 
@@ -74,7 +74,12 @@ addDerivedCategorical.NMBasicModel <- function(obj, varName, newVar = paste(varN
 	obj@additionalVars[[newVar]] <- facData
 	invisible(obj)
 }
+
+#' @rdname addDerivedCategorical
+#' @export
+
 setMethod("addDerivedCategorical", signature(obj = "NMBasicModel"), addDerivedCategorical.NMBasicModel)
+
 setMethod("addDerivedCategorical", signature(obj = "NMBasicModelNM7"), addDerivedCategorical.NMBasicModel)
 
 addDerivedCategorical.NMRun <- function(obj, varName, newVar = paste(varName, ".CUT", sep = ""), breaks = 5, binType = "range", labels = NULL, problemNum = 1, dataType = "output")
@@ -83,6 +88,10 @@ addDerivedCategorical.NMRun <- function(obj, varName, newVar = paste(varName, ".
 	newObj <- addDerivedCategorical(specObj, varName, newVar, breaks, binType, labels, dataType)
 	invisible(newObj)
 }
+
+#' @rdname addDerivedCategorical
+#' @export
+
 setMethod("addDerivedCategorical", signature(obj = "NMRun"), addDerivedCategorical.NMRun)
 
 setOldClass("data.frame")
@@ -117,6 +126,10 @@ addDerivedCategorical.data.frame <- function(obj, varName, newVar = paste(varNam
 	obj[[newVar]] <- facData
 	invisible(obj)
 }
+
+#' @rdname addDerivedCategorical
+#' @export
+
 setMethod("addDerivedCategorical", signature(obj = "data.frame"), addDerivedCategorical.data.frame)
 
 #' @importFrom stats quantile
@@ -153,7 +166,15 @@ addDerivedCategorical.NMSimModel <- function(obj, varName, newVar = paste(varNam
 	obj@additionalVars[[newVar]] <- facData
 	invisible(obj)
 }
+
+#' @rdname addDerivedCategorical
+#' @export
+
 setMethod("addDerivedCategorical", signature(obj = "NMSimModel"), addDerivedCategorical.NMSimModel)
+
+#' @rdname addDerivedCategorical
+#' @export
+
 setMethod("addDerivedCategorical", signature(obj = "NMSimModelNM7"), addDerivedCategorical.NMSimModel)
 
 #' @importFrom stats quantile
@@ -192,5 +213,8 @@ addDerivedCategorical.NMSimDataGen <- function(obj, varName, newVar = paste(varN
 	obj@additionalVars[[newVar]] <- facData
 	invisible(obj)
 }
-setMethod("addDerivedCategorical", signature(obj = "NMSimDataGen"), addDerivedCategorical.NMSimDataGen)
 
+#' @rdname addDerivedCategorical
+#' @export
+
+setMethod("addDerivedCategorical", signature(obj = "NMSimDataGen"), addDerivedCategorical.NMSimDataGen)

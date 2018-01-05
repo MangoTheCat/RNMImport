@@ -6,6 +6,7 @@
 #' @return None
 #' @author Mango Solutions
 #' @keywords IO, debugging, utilities
+#' @export
 #' @noRd
 
 logMessage <- function(text, logName)
@@ -21,6 +22,7 @@ logMessage <- function(text, logName)
 #' @return Nothing
 #' @author Mango Solutions
 #' @keywords IO, debugging, utilities
+#' @export
 #' @noRd
 
 setLogConnection <- function(logName, conn)
@@ -39,6 +41,7 @@ setLogConnection <- function(logName, conn)
 #' @return Nothing
 #' @author Mango Solutions
 #' @keywords IO
+#' @export
 #' @noRd
 
 closeLogConnection <- function(logName, allowFail = TRUE)
@@ -65,6 +68,7 @@ closeLogConnection <- function(logName, allowFail = TRUE)
 #' @return None
 #' @author Mango Solutions
 #' @keywords IO
+#' @export
 #' @noRd
 
 setLogFile <- function(logName, fileName)
@@ -79,6 +83,7 @@ setLogFile <- function(logName, fileName)
 #' @return Connection associated to a log
 #' @author Mango Solutions
 #' @keywords utilities
+#' @export
 #' @noRd
 
 logConnection <- function(logName)
@@ -93,6 +98,7 @@ logConnection <- function(logName)
 #' @return Character vector of all available logs
 #' @author Mango Solutions
 #' @keywords utilities, programming
+#' @export
 #' @noRd
 
 availableLogs <- function()

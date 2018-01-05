@@ -16,6 +16,10 @@ An S4 class of NMProblem
 
 \item{\code{reportStatements}}{A list of parsed sections of the output report file}
 
+\item{\code{nmVersionMajor}}{[C,1] NONMEM major version number}
+
+\item{\code{nmVersionMinor}}{[N,1] NONMEM minor version number}
+
 \item{\code{inputData}}{A data.frame of the input data, if available (otherwise an empty data.frame)}
 
 \item{\code{outputData}}{Aggregation of the output data}

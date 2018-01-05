@@ -18,4 +18,3 @@ Gets a variable name and its associated characteristics.
 \author{
 Mango Solutions
 }
-

@@ -1,6 +1,7 @@
 
-#' Imports the output data used in an individual NONMEM model based on its $TABLE statements 
 #' @title Import model tables
+#' @description Imports the output data used in an individual NONMEM model based on its $TABLE statements 
+#' 
 #' @param tableStatement tableStatement [char matrix] - A control file table statement, as parsed by .importNmModTables 
 #' @param allowFirstOnly [L,1] - Allow the use of FIRSTONLY statements in the $TABLE statement? 
 #' @param dvLog currently unused
@@ -9,12 +10,14 @@
 #' Otherwise, attempts to consolidate all of the (unique) output table variables into a single data.frame, but will return
 #' a list of some of the tables had a FIRSTONLY statement, and others did not.
 #' @param path Path to the table files.  Can be a path name 
-#' @return Returns: Either a list or a data.frame.  A data.frame of all unique output table columns (from all table files)
-#' is returned if returnFormat = "singleDF", UNLESS there are both FIRSTONLY tables and non-FIRSTONLY tables, in which
+#' @return a list or a data.frame.  
+#' A data.frame of all unique output table columns (from all table files)
+#' is returned if returnFormat = "singleDF", 
+#' UNLESS there are both FIRSTONLY tables and non-FIRSTONLY tables, in which
 #' case a list of 2 components is returned. 
 #' @author Mango Solutions
 #' @importFrom methods is
-#' @noRd
+#' @export
 
 importModelOutputTables <- function( tableStatement, allowFirstOnly = TRUE, 
         dvLog = FALSE, trim = FALSE, returnFormat = c("singleDF", "DFlist"),

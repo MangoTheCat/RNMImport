@@ -18,4 +18,3 @@ Gets a path stored globally by the user.
 \author{
 Mango Solutions
 }
-

@@ -6,7 +6,7 @@
 #' @return None
 #' @author Mango Solutions
 #' @keywords error
-#' @export
+#' @noRd
 
 RNMImportWarning <- function(msg = "Warning!\n", call = NULL)
 {
@@ -24,7 +24,7 @@ RNMImportWarning <- function(msg = "Warning!\n", call = NULL)
 #' @return None
 #' @author Mango Solutions
 #' @keywords error
-#' @export
+#' @noRd
 #' @importFrom utils dump.frames head
 
 RNMImportStop <- function(msg = "Error!\n",  call = NULL)

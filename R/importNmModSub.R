@@ -7,6 +7,7 @@
 #' @author Mango Solutions
 #' @note Based on code originally by R Francois
 #' @noRd
+#' @export
 
 .importNmModSub <- function(txt, .extract = length(grep("\\$SUB",txt)) > 0)
 {

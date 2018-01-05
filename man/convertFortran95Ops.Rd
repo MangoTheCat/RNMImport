@@ -18,4 +18,3 @@ Coverts FORTRAN 95 operators in a chunk of code (in a character vector) to
 \author{
 Mango Solutions
 }
-

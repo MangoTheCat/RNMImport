@@ -23,4 +23,3 @@ Based on code by R. Pugh,J.James, and R.Francois
 \author{
 Mango Solutions
 }
-

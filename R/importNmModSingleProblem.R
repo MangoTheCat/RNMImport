@@ -2,15 +2,16 @@
 
 
 
+#' Import Single NONMEM problem
+#' 
 #' Imports a single NONMEM problem into a list structure
-#' @name .importNmModSingleProblem
-#' @title Import Single NONMEM problem
+#'
+#' @name importNmModSingleProblem
 #' @param contents Text of the contents of a SINGLE problem statement
 #' @param fileName Name of the control file from which the problem originates
 #' @return named list with the various sections split up
 #' @author Mango Solutions
 #' @export
-#' 
 
 .importNmModSingleProblem <- function(contents, fileName)
 {
@@ -81,8 +82,9 @@
 #TODO: comment
 # TODO: handle additional missing elements
 
-#' 
-#' @title merge Missing
+
+#' merge Missing
+#'
 #' @param currentProblem 
 #' @param previousProblem 
 #' @return vector

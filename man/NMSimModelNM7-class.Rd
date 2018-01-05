@@ -29,5 +29,11 @@ This class holds the results of NONMEM problems that both simulate data and fit 
 \item{\code{sigmaInitial}}{Initial values of sigmas}
 
 \item{\code{seeds}}{Values of seeds used for random-number generation}
+
+\item{\code{numMethods}}{TODO}
+
+\item{\code{methodInfo}}{TODO}
+
+\item{\code{methodNames}}{TODO}
 }}
 

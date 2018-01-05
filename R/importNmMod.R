@@ -20,7 +20,6 @@
 #' @note An execption will be generated if $PRIOR NWPRI is found in a control file and NONMEM version VII was used. If the control file is empty, 
 #' an exception will also be generated. 
 #' @keywords IO
-#' @noRd
 #' @export
 
 importNmMod <- function(

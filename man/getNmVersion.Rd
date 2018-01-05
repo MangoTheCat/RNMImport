@@ -3,8 +3,8 @@
 \docType{methods}
 \name{getNmVersion}
 \alias{getNmVersion}
-\alias{getNmVersion,NMProblem-method}
 \alias{getNmVersion,NMRun-method}
+\alias{getNmVersion,NMProblem-method}
 \title{Gets the version of NONMEM used to create compile obj}
 \usage{
 getNmVersion(obj)
@@ -26,4 +26,3 @@ Gets the version of NONMEM used to create compile obj
 \author{
 Mango Solutions
 }
-

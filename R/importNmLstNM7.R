@@ -1,6 +1,7 @@
 
 
 #' This function parses
+#' @name importMethodBlock
 #' @param methodTextBlock 
 #' @title Parse report file #METH text block
 #' @return block result

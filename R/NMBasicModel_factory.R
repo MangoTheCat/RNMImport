@@ -10,7 +10,7 @@
 #' @param versionInfo [C, +] numeric vector that holds
 #' @return An NMBasicModel object holding the problem information
 #' @author Mango Solutions
-#' @noRd
+#' @exportClass NMBasicModel
 
 NMBasicModel <- function(controlStatements, path, reportContents, dropInputColumns = FALSE, 
 		versionInfo = c("major" = "VI", "minor" = 0))
@@ -59,8 +59,12 @@ NMBasicModel <- function(controlStatements, path, reportContents, dropInputColum
 				# grab parameter initial values
 				thetaInitial <- t(controlStatements$Theta[,c("Lower","Est","Upper")])
 				# these may be missing in the control statements, so try to extract them from the reportContents
-				omegaInitial <- if(!is.null(controlStatements$Omega)) controlStatements$Omega$initialMatrix  else  reportContents$initialEstimates$OMEGA
-				# grab dimensions of omega final estimates
+				omegaInitial <- if(!is.null(controlStatements$Omega)) {
+                    getVariabilityMatrix(control = controlStatements, which = "Omega") 
+                } else { 
+                    reportContents$initialEstimates$OMEGA
+				}
+                # grab dimensions of omega final estimates
 				omegaDim <- dim(FinalEstimates$OMEGA)
 				# if no initial omega, fall back on a default set of names
 				if(is.null(omegaInitial)) {
@@ -70,7 +74,7 @@ NMBasicModel <- function(controlStatements, path, reportContents, dropInputColum
 				
 				else omegaDimNames <- dimnames(omegaInitial)
 				
-				sigmaInitial <- controlStatements$Sigma$initialMatrix
+				sigmaInitial <- getVariabilityMatrix(control = controlStatements, which = "Sigma") 
 				if(is.null(sigmaInitial)) sigmaInitial <- matrix()
 				rownames(thetaInitial) <- c("lowerBound", "initial", "upperBound")
 				

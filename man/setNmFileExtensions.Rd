@@ -27,4 +27,3 @@ input data tables.  When loading a file, the package will fail if its extension 
 Mango Solutions
 }
 \keyword{environment}
-
