@@ -25,4 +25,3 @@ Sets new characteristics for a required variable.
 \author{
 Mango Solutions
 }
-

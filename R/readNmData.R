@@ -22,7 +22,7 @@
 #' @author Mango Solutions
 #' @importFrom stats median
 #' @importFrom utils count.fields
-#' @noRd
+#' @export
 
 
 readNmData <- function(
@@ -144,6 +144,7 @@ readNmData <- function(
 #' @return Subsetted data as a data.frame
 #' @author Mango Solutions
 #' @noRd
+#' @export
 
 
 # Based on code by R. Francois

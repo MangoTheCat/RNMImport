@@ -20,4 +20,3 @@ Adds subset expressions to the subset of an object
 \author{
 Mango Solutions
 }
-

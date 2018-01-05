@@ -9,6 +9,7 @@
 #' which columns are to be written, whether there is a header or not, etc.
 #' @author Mango Solutions
 #' @noRd
+#' @export 
 
 .importNmModTables <- function
 (

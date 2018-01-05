@@ -18,9 +18,13 @@ It also holds the control file and list output file text
 
 \item{\code{controlComments}}{[C,1] Comments of each line of the control file}
 
+\item{\code{nmVersionMajor}}{[C,1] NONMEM major version number}
+
+\item{\code{nmVersionMinor}}{[N,1] NONMEM minor version number}
+
 \item{\code{controlFileInfo}}{[data.frame] Information about the control file}
 
-\item{\code{reportFileInfo}}{Information about the list file}
+\item{\code{reportFileInfo}}{[data.frame] Information about the list file}
 
 \item{\code{numProblems}}{[N,1] - Number of problems in the run}
 

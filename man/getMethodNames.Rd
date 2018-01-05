@@ -3,8 +3,8 @@
 \docType{methods}
 \name{getMethodNames}
 \alias{getMethodNames}
-\alias{getMethodNames,NMBasicModelNM7-method}
 \alias{getMethodNames,NMRun-method}
+\alias{getMethodNames,NMBasicModelNM7-method}
 \alias{getMethodNames,NMSimModelNM7-method}
 \title{Get method names}
 \usage{
@@ -48,4 +48,3 @@ Mango Solutions
 }
 \keyword{methods}
 \keyword{utilities}
-

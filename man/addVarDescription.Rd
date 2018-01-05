@@ -24,4 +24,3 @@ Adds a new variable and corresponding characteristics to a global data frame.
 \author{
 Mango Solutions
 }
-

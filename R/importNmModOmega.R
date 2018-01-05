@@ -1,4 +1,7 @@
 
+#' @noRd
+#' @export
+
 .extractInformation <- function( x, guessNames = TRUE, rx = "([^[:space:]~]+)$")
 {
   ### BLOCK style, indicates a block diagonal specification                                                             
@@ -59,6 +62,9 @@
   }
 }
 
+#' @noRd
+#' @export
+
 .extractInitialInformation <- function( x, guessNames = TRUE, rx = "([^[:space:]~]+)$")
 {
   # extract comments	
@@ -102,13 +108,14 @@
 }
 
 
+#' @noRd
+#' @export
 
 .importNmModOmega <- function(
 		txt = NULL, 
 		guessNames = TRUE, 
 		component = c("OMEGA", "SIGMA"), 		 
 		file = NULL
-		#rx = "([^[:space:]~]+)$" 
 		)
 {	
 	if(!is.null(file))

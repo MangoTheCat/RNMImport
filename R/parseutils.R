@@ -38,55 +38,81 @@ ogrep <- function( pattern, text, filter = NULL, ignore.case = TRUE, perl = FALS
 
 ##################################################################
 # pop functions:
-# a collection of functions for identifying patterns in string vectors, then either in-place removing them from the string
-# or returning the strings with the pattern removed
-# Originally created by Romain Francois for the first RNONMEM, cleaned and augmented by F. Gochez
+# Added: Dec 22 2008
+# Originally created by Romain Francois for the first RNONMEM, 
+# cleaned and augmented by F. Gochez
 ##################################################################
 
 ##################################################################
-# pop
-# searches for a pre-specified text pattern in a set of strings and then either returns those strings without 
-# the text, together with a certain return value (controlled by "mode"), or directly remove the text pattern "in place"
-# (if inPlace = TRUE)
-# Author: Mango Solutions
-# Added: Dec 22 2008
-# Last modified: Dec 22 2008
-# parameters -
-# @ txt - [C,+] the text to process
-# @ option - [C,+] the option to search for, e.g. "PRINT", "NOPRINT", etc.
-# @ mode - [C,1] Controls the type of data that is returned.  If "logical", a TRUE if the option is found, FALSE otherwise
-#				 If "equal", the option followed by an equal sign, if "brackets" extract the object held in brackets, 
-# @ inPlace - [L,1] Logical flag.  If TRUE, modifies the input text "in place", otherwise it is returned as a component in a 
-# list
-# @ absent - What to return if the string is missing
-# @ ignore.case - If TRUE, ignores case
-# @ sep - [C,1] character to use a separator between key and value
-# @ removeBrackets - [L,1] 
-# @ numeric - [L, 1] Logical flag.  If TRUE, will return as numeric
+#' @title pop
+#' @description A collection of functions for identifying patterns in string vectors, 
+#' then either in-place removing them from the string
+#' or returning the strings with the pattern removed.
+#' Searches for a pre-specified text pattern in a set of strings 
+#' and then either returns those strings without the text, 
+#' together with a certain return value (controlled by "mode"),
+#' or directly remove the text pattern "in place" (if inPlace = TRUE)
+#' The mode may be: \itemize{
+#'     \item "logical", a TRUE if the option is found, FALSE otherwise
+#'     \item "equal" extract text which follows option followed by an equal sign (NULL if no text)
+#'     \item "brackets" extract the object held in brackets
+#'     \item "comments" extract text which follows comment character ";"
+#' }
+#' @author Mango Solutions
+#' @param txt [C,+] the text to process
+#' @param option [C,+] the option to search for, e.g. "PRINT", "NOPRINT", etc.
+#' @param mode [C,1] Select "logical", "equal", "brackets", or "comments". 
+#' Controls the type of data that is returned. 
+#' @param inPlace [L,1] Logical flag.  If TRUE, modifies the input text "in place"
+#' (in the current location),
+#' otherwise it is returned as a component in a list
+#' @param absent What to return if the string is missing
+#' @param ignore.case If TRUE, ignores case
+#' @param shortcut [L, 1] is option a NM-TRAN shortcut (e.g. FIX for FIXED)? 
+#' If so, modify regex when mode is "equal"(default FALSE)
+#' @param sep [C,1] character to use a separator between key and value
+#' @param removeBrackets [L,1] 
+#' @param numeric [L, 1] Logical flag.  If TRUE, will return as numeric
+#' @param \dots additional arguments to regex functions
+#' @return logical, numeric, or character vector or NULL
+#' @examples
+#' txt <- c("$PROBLEM  THEOPHYLLINE   SINGLE SUBJECT DATA",
+#'     "   ; modified version of file from run file of NONMEM installation",
+#'     "$INPUT  ID DOSE=AMT TIME CP=DV",
+#'     "$DATA  DATA3.txt",
+#'     "$SUBROUTINES  ADVAN2")
+#' RNMImport:::pop(txt = txt, option = "ADVAN2")
+#' RNMImport:::pop(txt = txt, option = "DOSE", mode = "equal")
+#' RNMImport:::pop(txt = txt, mode = "comments")
+
 ##################################################################
 
 pop <- function( 
-		txt, option, mode = c( "logical", "equal", "brackets","comments" ),
-		inPlace = TRUE, absent = if( mode == "logical") FALSE else NULL ,	ignore.case = TRUE, 
+		txt, option, 
+        mode = c("logical", "equal", "brackets", "comments"),
+		inPlace = TRUE, 
+        absent = if (mode == "logical") FALSE else NULL,	
+        ignore.case = TRUE, 
 		shortcut = FALSE, sep = "=", 
 		.depth = 1, removeBrackets = (mode == "brackets"),
 		numeric = FALSE,
-		... 
-)
-{
-	
-	if(inPlace ) 
+		...) {
+	if (inPlace)
 		nameTxt <- deparse( substitute( txt ))  
 	
 	### need spaces after closing brackets
-	txt <- gsub( "\\)[[:space:]]*", ") ", txt )
+	txt <- gsub(pattern = "\\)[[:space:]]*", 
+        replacement = ") ", x = txt)
 	
-	### expand the regex if dealing with a shortcut
+	mode <- match.arg(mode)
+    # override removing brackets for logical
+    if (mode == "logical") {
+        removeBrackets <- FALSE
+    }
+    ### expand the regex if dealing with a shortcut
 	#   FIX instead of FIXED, etc, ....
-	mode <- match.arg( mode )
-	if( shortcut && mode == "equal" )
-	{
-		option <- sprintf("[^[:space:]]*%s[^[:space:]=]*", option )
+	if (shortcut && mode == "equal") {
+		option <- sprintf("[^[:space:]]*%s[^[:space:]=]*", option)
 	}
 	
 	### build the regex to search for
@@ -97,32 +123,31 @@ pop <- function(
 			"comments" = ";(.*$)")
 	grep.out <- grep( rx, txt, ignore.case = ignore.case, ... )
 	
-	op.out <- 
-			if( length(grep.out) )
-			{
-				out <- switch( mode, 
-						"logical"  = TRUE, 
-						"equal"    = gsub( "['\"]", "", gsub( sprintf("^.*%s.*$", rx), "\\1", txt[grep.out], 
-										ignore.case = ignore.case, ... ) ), 
-						"brackets" = sub( sprintf("^[^\\(\\)]*%s.*$", rx), "\\1", txt[grep.out], 
-								ignore.case = ignore.case, ...), 
-						"comments" = {
-							com <- rep("", length(txt)) 
-							com[grep.out] <- sub( sprintf("^.*%s", rx), "\\1", txt[grep.out])
-							com
-						})
-				txt <- sub( sprintf("[[:space:]]*%s[[:space:]]*", rx), " ", txt)
-				if(removeBrackets){
-					out <- gsub("[\\(\\)]", "", out)
-				}
-				trimws(out, which = "both")
-			} 
-			else absent
-	if( numeric) 
+	op.out <- if (length(grep.out)) {
+            out <- switch(mode, 
+                    "logical"  = TRUE, 
+                    "equal"    = gsub( "['\"]", "", gsub( sprintf("^.*%s.*$", rx), "\\1", txt[grep.out], 
+                                    ignore.case = ignore.case, ... ) ), 
+                    "brackets" = sub( sprintf("^[^\\(\\)]*%s.*$", rx), "\\1", txt[grep.out], 
+                            ignore.case = ignore.case, ...), 
+                    "comments" = {
+                        com <- rep("", length(txt)) 
+                        com[grep.out] <- sub( sprintf("^.*%s", rx), "\\1", txt[grep.out])
+                        com
+                    })
+            txt <- sub( sprintf("[[:space:]]*%s[[:space:]]*", rx), " ", txt)
+            if (removeBrackets) {
+                out <- gsub("[\\(\\)]", "", out)
+            }
+            if (mode != "logical") {
+                out <- stripBlanks(out)
+            }
+            out
+        } else { absent }
+	if (numeric) 
 		op.out <- as.numeric(op.out)
-	if( inPlace ) 
-	{	
-		assign( nameTxt, txt, parent.frame(.depth) )
+	if (inPlace) {
+		assign(nameTxt, txt, parent.frame(.depth))
 		return(op.out)
 	}
 	list(op.out = op.out, txt = txt)
@@ -281,19 +306,33 @@ commentSplit <- function(
 }
 
 ##################################################################
-# stripBlanks
-# 
-# Author: Mango Solutions
+#' @title stripBlanks
+#' @description Removes whitespace from character vector.
+#' Multiple whitespace characters are consolidated to a single space.
+#' @author Mango Solutions
 # Added: Jan 2 2009
 # Last modified: Jan 2 2009
-# parameters :
-# @ section - [C,1] A string demarcating the section (e.g. "PROBLEM", "INPUT")
-# @ text - [C, +] A character vector holding the text to check for sections
-# @ pattern - A regular expression that fully describes the section markets, such as $PROBLEM
-# @ sep - The prefix for a section separator
-# returns - Indices where the sections begin
+# 
+#' @param txt [C,+] the text to modify 
+#' @param trim [L,1] replace multi space with single space? (default TRUE)
+#' @param leading [L,1] remove leading spaces? (default TRUE)
+#' @param trailing [L,1] remove trailing spaces? (default TRUE)
+#' @param shrink [L,1] shrink spaces around '=' signs? (default TRUE)
+#' @param trimRx regular expression used if trim
+#' @param trailingRx regular expression used if trailing
+#' @param leadingRx regular expression used if leading
+#' @param remove.empty [L,1] remove empty elements? (default FALSE)
+#' @return Character vector
+#' @export
+#' @examples
+#' stripBlanks(character(0))
+#' stripBlanks(c("", "  "))
+#' stripBlanks("  AAA")
+#' stripBlanks("  AAA   ")
+#' stripBlanks(c("  AAA   ", "   BBB   CCC"))
+#' stripBlanks(c("\tAAA   ", "\tBBB\nCCC"))
+#' stripBlanks(c("  AAA   ", "   "), remove.empty = TRUE)
 ##################################################################
-
 
 stripBlanks <- function( 
 		txt,                            #@ [C,+] the text to modify 

@@ -15,4 +15,3 @@ Retrieves the global default subset which is assigned to objects upon loading
 \author{
 Mango Solutions
 }
-

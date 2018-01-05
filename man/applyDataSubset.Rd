@@ -22,4 +22,3 @@ Applies a set of subset expressions to a data.frame
 \author{
 Mango Solutions
 }
-

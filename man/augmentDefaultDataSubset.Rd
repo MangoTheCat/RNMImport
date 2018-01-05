@@ -18,4 +18,3 @@ Augments the global default subset by appending the "sub" parameter to the exist
 \author{
 Mango Solutions
 }
-

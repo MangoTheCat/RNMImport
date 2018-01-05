@@ -23,4 +23,3 @@ getNmFileExtensions("control")
 Mango Solutions
 }
 \keyword{environment}
-

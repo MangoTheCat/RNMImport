@@ -255,7 +255,7 @@ importNmLstSimDataGen <- function(contents)
 #'      x <- importNmReport("theoph.lst", path = "examples/theoph")
 #'      print(x)
 #' }
-#' @noRd
+#' @export
 
 importNmReport <- function( fileName, path = NULL, controlStatements = NULL, textReport = FALSE)
 {          

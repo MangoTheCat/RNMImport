@@ -25,4 +25,3 @@ applies if \code{run} is not an NMRun object
 Mango Solutions
 }
 \keyword{manip}
-

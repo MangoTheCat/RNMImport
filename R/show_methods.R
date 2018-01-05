@@ -1,11 +1,11 @@
 
 
+#' Show output table info
+#' 
 #' Displays information about output data.  Utility function for use with show methods
 #' @param object NMProblem object 
-#' @title Show output table info
 #' @return none
 #' @author Mango Solutions
-#' @noRd
 
 showOutput <- function(object)
 {
@@ -67,6 +67,9 @@ show.NMRun <- function(object)
 	}
 }
 
+#' @rdname showOutput
+#' @export 
+
 setMethod("show", signature(object = "NMRun"), show.NMRun )
 
 show.NMBasicModel <- function(object)
@@ -116,6 +119,9 @@ show.NMBasicModel <- function(object)
 				showOutput(object)
 			} ) # end with(controlStatements ...
 }
+
+#' @rdname showOutput
+#' @export 
 
 setMethod("show", signature(object = "NMBasicModel"), show.NMBasicModel)
 
@@ -168,6 +174,8 @@ show.NMBasicModelNM7 <- function(object)
 			} ) # end with(controlStatements ...
 }
 
+#' @export 
+
 setMethod("show", signature(object = "NMBasicModelNM7"), show.NMBasicModelNM7)
 
 #' @importFrom stats na.omit
@@ -202,6 +210,9 @@ show.NMSimDataGen <- function(object)
 				
 		} ) # end with(controlStatments, 
 }
+
+#' @rdname showOutput
+#' @export 
 
 setMethod("show", signature(object = "NMSimDataGen"), show.NMSimDataGen)
 
@@ -254,6 +265,9 @@ show.NMSimModel <- function(object)
 	})
 }
 
+#' @rdname showOutput
+#' @export 
+
 setMethod("show", signature(object = "NMSimModel"), show.NMSimModel)
 
 #' @importFrom stats na.omit
@@ -305,5 +319,8 @@ show.NMSimModelNM7 <- function(object)
 				print(object@objectiveFinal)
 			})
 }
+
+#' @rdname showOutput
+#' @export 
 
 setMethod("show", signature(object = "NMSimModelNM7"), show.NMSimModelNM7)

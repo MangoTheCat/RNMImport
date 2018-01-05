@@ -12,18 +12,23 @@ importNm7Tables(file, path = ".", type = c("cov", "ext", "phi"),
 
 \item{path}{Path to the file (can be a NONMEM path in round brackets)}
 
-\item{type}{Type of the file: One of "cov", "ext", or "phi".  "cov" should be used for .cor, .cov or .coi files.}
+\item{type}{Type of the file: One of "cov", "ext", or "phi".
+"cov" should be used for .cor, .cov or .coi files. If not set, type 
+will be based on file extension if one of these patterns.}
 
-\item{tableTitles}{Single logical flag. Are the table titles present in the file?  Should be FALSE, if, for example, one generates an EXT
+\item{tableTitles}{Single logical flag. Are the table titles present in the file?
+Should be FALSE, if, for example, one generates an EXT
 file using the NOTITLE=1 option.  Currently this option ONLY works when type = "ext"}
 }
 \value{
-a list of data.frames holding the content of the individual sub-tables within each file.  Each
-table will have as an attribute "method", holding the name of the method associated to it, if it was available (e.g. not if
-tableTitles = FALSE)
+a list of data.frames holding the content of the individual sub-tables within each file.  
+Each table will have as an attribute "method", holding the name of the method associated to it, 
+if it was available (e.g. not if tableTitles = FALSE)
+If type is "cov", data will be matrices.
 }
 \description{
-Imports one of the new files produced by NONMEM 7: .phi, .cor, .cov, etc. into a  list of data.frames.
+Imports one of the new files produced by NONMEM 7: 
+.phi, .cor, .cov, etc. into a  list of data.frames.
 }
 \note{
 The "cov" type covers .cor, .cov and .coi files.
@@ -39,4 +44,3 @@ The "cov" type covers .cor, .cov and .coi files.
 Mango Solutions
 }
 \keyword{IO}
-

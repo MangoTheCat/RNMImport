@@ -20,4 +20,3 @@ Sets the subset of an object
 \author{
 Mango Solutions
 }
-

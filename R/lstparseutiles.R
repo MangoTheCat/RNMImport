@@ -1,6 +1,7 @@
 
 #' Splits a single block of #METH statements into "sections".  This is similar to sectionLst, but only for a
 #' single block delimeted by #METH in NONMEM 7
+#'
 #' @title Split method text block into sections
 #' @param [C,+] methodContents Line of text in a #METH statement (includes the #METH line)
 #' @return [L, +] a named list of split text, with names corresponding to section names
@@ -258,9 +259,8 @@ nmVersion <- function(lstContents)
 }
 
 
-#' 
+#' partitionLstSubproblems
 #' @param contents A character vector of strings holding the lines of subproblem information (ONLY!) for one simulation problem
-#' @title partitionLstSubproblems
 #' @return list
 #' @author Mango Solutions
 #' @noRd

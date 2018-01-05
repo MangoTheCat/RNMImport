@@ -18,4 +18,3 @@ Retrieves the data subset associated with a particular object
 \author{
 Mango Solutions
 }
-

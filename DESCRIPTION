@@ -1,8 +1,16 @@
 Package: RNMImport
 Title: Tools for importing and manipulating NONMEM data
 Version: 0.3.7
-Author: Mango Solutions <support@mango-solutions.com>
-Maintainer: Gabor Csardi <gcsardi@mango-solutions.com>
+Author: Mango Solutions <support@mango-solutions.com> [cre,cph],
+    Rich Pugh [aut],
+    Romain Francois [aut], 
+    John James [aut],
+    Francisco Gochez [aut],
+    Gabor Csardi [aut],
+    Jian Li [aut],
+    Mike K Smith [aut],
+    Chris Campbell [aut]
+Maintainer: Chris Campbell <ccampbell@mango-solutions.com>
 Suggests:
     RUnit (>= 0.4.22)
 Depends:
@@ -17,4 +25,4 @@ Description: Imports NONMEM data, and provides utilities for manipulation
 License: BSD_3_clause + file LICENSE
 URL: https://github.com/mangothecat/RNMImport
 BugReports: https://github.com/mangothecat/RNMImport/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

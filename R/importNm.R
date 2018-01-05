@@ -32,6 +32,7 @@
 #' @author Mango Solutions
 #' @keywords IO
 #' @export
+#' @exportClass NMRun
 
 importNm <- function(conFile, reportFile = NULL, path = NULL, dropInputColumns = TRUE, textReport = FALSE)
 {

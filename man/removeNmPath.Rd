@@ -18,4 +18,3 @@ Removes a globally stored user path.
 \author{
 Mango Solutions
 }
-
