@@ -103,6 +103,9 @@
         ### TRANSLATE                                                               
         translate <- equalExpressionPop( dataSec, "TRANSLATE", absent = "", inPlace = TRUE)
         
+        ### format information
+        format <- bracketPop(dataSec, inPlace = TRUE, absent = "")
+        
         ### only the filename should be left at this point                          
         dataSec <- stripBlanks( dataSec )
         # fileName <- .getFilePath( dataaSec  , modFile, debug=debug)
@@ -111,7 +114,7 @@
         
         c( "File" = fileName, "IG" = allIgnore, "ACCEPT" = accept, 
                 "REWIND" = rewind, "RECORDS" = records, 
-                "TRANSLATE" = translate, "NULL" = null )
+                "TRANSLATE" = translate, "NULL" = null, "format" = format)
     }   
     out <- sapply( x, .extractDataInfo)  
     t(out)
