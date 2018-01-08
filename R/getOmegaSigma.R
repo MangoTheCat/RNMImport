@@ -24,7 +24,7 @@ getSigmasOrOmegas.NM7 <- function(obj, what = "final", item = c("sigma", "omega"
 	
 	# function to retrieve objects for a single method
 	
-	.getSigOrOmSingleMethod <- function(method=length(getMethodNames(obj)))
+	.getSigOrOmSingleMethod <- function(meth=1)
 	{
 		# restrict the method chosen to a valid one
 		
