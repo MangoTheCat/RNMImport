@@ -18,7 +18,7 @@
 #'      getSigmas(x, what = c("initial", "final")) 
 #' }
 
-getSigmas <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
+getSigmas <- function(obj, what = "final",  subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1)
 {
 	RNMImportStop(msg = "This method is not implemented for this class!")
 }
@@ -87,7 +87,7 @@ getSigmas.NMBasicModel <- function(obj, what = "final",  subProblemNum = 1, meth
 
 setMethod("getSigmas", signature(obj = "NMBasicModel"), getSigmas.NMBasicModel)
 
-getSigmas.NMBasicModelNM7 <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
+getSigmas.NMBasicModelNM7 <- function(obj, what = "final",  subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1)
 {
 	getSigmasOrOmegas.NM7(obj, what = what, item = "sigma", method = method)
 }
@@ -97,7 +97,7 @@ getSigmas.NMBasicModelNM7 <- function(obj, what = "final",  subProblemNum = 1, m
 
 setMethod("getSigmas", signature(obj = "NMBasicModelNM7"), getSigmas.NMBasicModelNM7)
 
-getSigmas.NMRun <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
+getSigmas.NMRun <- function(obj, what = "final",  subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1)
 {
 	dat <- getProblem(obj, problemNum)
 	sigmas <- getSigmas(dat, what = what, method = method, subProblemNum = subProblemNum)
@@ -143,7 +143,7 @@ getSigmas.NMSimModel <- function(obj, what = "final",  subProblemNum = 1, method
 
 setMethod("getSigmas", signature(obj = "NMSimModel"), getSigmas.NMSimModel)
 
-getSigmas.NMSimModelNM7 <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
+getSigmas.NMSimModelNM7 <- function(obj, what = "final",  subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1)
 {
 	getSigmasOrOmegas.NM7(obj, what = what, item = "sigma", method = method, probType = "sim", subProblemNum = subProblemNum )
 }

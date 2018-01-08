@@ -11,7 +11,7 @@
 #' @author Mango Solutions
 #' @noRd
 
-getSigmasOrOmegas.NM7 <- function(obj, what = "final", item = c("sigma", "omega"), method = 1, probType = c("basic", "sim"), subProblemNum = 1)
+getSigmasOrOmegas.NM7 <- function(obj, what = "final", item = c("sigma", "omega"), method=length(getMethodNames(obj)), probType = c("basic", "sim"), subProblemNum = 1)
 {
 	# choose valid items, discard disallowed objects
 	
@@ -24,7 +24,7 @@ getSigmasOrOmegas.NM7 <- function(obj, what = "final", item = c("sigma", "omega"
 	
 	# function to retrieve objects for a single method
 	
-	.getSigOrOmSingleMethod <- function(meth = 1)
+	.getSigOrOmSingleMethod <- function(method=length(getMethodNames(obj)))
 	{
 		# restrict the method chosen to a valid one
 		
