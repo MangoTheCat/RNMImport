@@ -26,7 +26,7 @@ PARAMITEMS <- c("final", "initial", "stderrors")
 #'      getThetas(x, what = c("initial", "final")) 
 #' }
 
-getThetas <- function(obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1 )
+getThetas <- function(obj, what = "final", subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1 )
 {
 	RNMImportStop(msg = "This method is not implemented for this class!")
 }
@@ -94,8 +94,7 @@ getThetas.NMBasicModel <- function( obj, what = "final", subProblemNum = 1,
 
 setMethod("getThetas", signature(obj = "NMBasicModel"), getThetas.NMBasicModel)
 
-getThetas.NMRun <- function( obj, what = "final", subProblemNum = 1, 
-    method = 1, problemNum = 1 )
+getThetas.NMRun <- function( obj, what = "final", subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1 )
 {
 	dat <- getProblem(obj, problemNum)
 	thetas <- getThetas(dat, what = what, method = method, subProblemNum = subProblemNum)
@@ -107,8 +106,7 @@ getThetas.NMRun <- function( obj, what = "final", subProblemNum = 1,
 
 setMethod("getThetas", signature(obj = "NMRun"), getThetas.NMRun)
 
-getThetas.NMBasicModelNM7 <- function( obj, what = "final", subProblemNum = 1, 
-    method = 1, problemNum = 1 )
+getThetas.NMBasicModelNM7 <- function( obj, what = "final", subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1 )
 {
 	validWhat <- intersect(what, PARAMITEMS)
 	invalidWhat <- setdiff(what, PARAMITEMS)
@@ -246,7 +244,7 @@ getThetas.NMSimModel <- function( obj, what = "final", subProblemNum = 1,
 setMethod("getThetas", signature(obj = "NMSimModel"), getThetas.NMSimModel)
 
 
-getThetas.NMSimModelNM7 <- function(obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1)
+getThetas.NMSimModelNM7 <- function(obj, what = "final", subProblemNum = 1, method=length(getMethodNames(obj)), problemNum = 1)
 {
 	validWhat <- intersect(what, PARAMITEMS)
 	invalidWhat <- setdiff(what, PARAMITEMS)
