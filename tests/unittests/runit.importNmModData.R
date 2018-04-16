@@ -39,41 +39,41 @@ test.importNmModData <- function()
 	dataExpected <-
 		list(
 			c( File="data3.dat", IG="I;(TIME.EQ.1)", ACCEPT="",   #1
-				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format="" ),
 			c( File="data3.dat", IG="@", ACCEPT="",     #2
-				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format="" ),
 			c( File="data3.dat", IG="C", ACCEPT="",     #3
-				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format="" ),
 			c( File="data3.dat", IG="C", ACCEPT="",     #4
-				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME.EQ.1)", ACCEPT="", #5     
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME=1)", ACCEPT="",    #6
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME.EQ.1,DV.LT.2.01)", ACCEPT="", # 7     
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I", ACCEPT="(TIME.NE.1)",  #8 
-				REWIND="TRUE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+				REWIND="TRUE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I", ACCEPT="(TIME.NE.1)",  #9 
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="@", ACCEPT="",     #10
-				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+				REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME.EQ.1)", ACCEPT="",   #11  
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="(TIME.EQ.1);I", ACCEPT="",   #12
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="(TIME.EQ.1);I", ACCEPT="", #13   
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME.EQ.1)", ACCEPT="", #14
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),			
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),			
 			c( File="data3.dat", IG="NONE", ACCEPT="", #15     
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME.EQ.1)", ACCEPT="",   #16
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="I;(TIME.EQ.1,DV.LT.2.01)", ACCEPT="", #17     
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= ""  ),
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format=""  ),
 			c( File="data3.dat", IG="(DV.LT.2.01)", ACCEPT="",     #18
-					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "" )	
+					REWIND="FALSE", RECORDS="",TRANSLATE= "", NULL= "", format="" )	
 		)
 		
 	allDataTests <- t(sapply(dataStatements, .importNmModData))

@@ -54,10 +54,10 @@ test.getThetas <- function()
 	prob2 <- getProblem(run2)
 	
 	simThetas <- matrix(c(17.2, 18.3, 18.0, 19.0, 17.1, 117.0, 108.0, 108.0, 98.9, 109.0, 1.24, 1.40, 1.24, 1.55, 1.38), 5, 3)
-	dimnames(simThetas) <- list(c("sim1", "sim2", "sim3", "sim4", "sim5"), c("THETA1", "THETA2", "THETA3"))
+	rownames(simThetas) <- c("sim1", "sim2", "sim3", "sim4", "sim5")
 	simInitial <- c(19.6, 84.6, 1.66)
 	
-	names(simInitial) <- c("THETA1", "THETA2", "THETA3")
+	#names(simInitial) <- c("THETA1", "THETA2", "THETA3")
 	
 	checkEquals(getThetas(prob2, subProblemNum = 1:5),  simThetas, msg = " |for sim model, final as expected")
 	
@@ -89,10 +89,10 @@ test.getThetas <- function()
 									"upperBound"), c("THETA1", "THETA2", "THETA3")), 
 					methodName = "Iterative Two Stage"))
 	
-	checkEquals(getThetas(prob3, what = c("stderrors", "final")), 
-			structure(c(20, 1.24, 77.3, 7.71, 1.27, 0.127), .Dim = 2:3, .Dimnames = list(
-							c("estimates", "standardErrors"), c("THETA1", "THETA2", "THETA3"
-							)), methodName = "Iterative Two Stage" ))
+	checkEquals(getThetas(prob3, what = "final"),
+	            structure(c(19.1, 76.7, 1.68), 
+	                      .Names = c("TH1", "TH2", "TH3"), 
+	                      methodName = "Stochastic Approximation Expectation-Maximization"))
 
 	thetaTest4 <- getThetas(prob3, what = "final", method = 1:2)
 	thetaTest5 <- getThetas(prob3, what = c("initial", "final", "stderrors"), method = 1:2 )
@@ -216,14 +216,13 @@ test.getOmegas <- function()
 							"standard.errors"), methodName = "Iterative Two Stage"), 
 			msg = " | getOmegas correct (2)")
 	
-	omegaTest3 <- getOmegas( prob3, what = c("stderrors", "final"))
+	omegaTest3 <- getOmegas( prob3, what = c("final"))
 	
-	expOmega3 <- list(final.estimates =  .removeMethName(getOmegas(prob3, what = "final")), 
-			standard.errors = .removeMethName(getOmegas(prob3, what = "stderrors")))
-	
-	attr(expOmega3, "methodName" ) <- "Iterative Two Stage"
-	
-	checkEquals(omegaTest3, expOmega3,
+	checkEquals(omegaTest3, 
+	            structure(c(0.145, 0, 0, 0, 0.149, 0, 0, 0, 1.42), 
+	                      .Dim = c(3L,3L), 
+	                      .Dimnames = list(c("ETA1", "ETA2", "ETA3"), c("ETA1", "ETA2", "ETA3")), 
+	                      methodName = "Stochastic Approximation Expectation-Maximization"),
 			 	msg = " | getOmegas correct (3)")
 		
 	## add additional tests for extracting multple methods at once
@@ -319,11 +318,12 @@ test.getSigmas <- function()
 							"standard.errors"), methodName = "Iterative Two Stage"), 
 			msg = " | getSigmas correct (2)")
 	
-	sigmaTest3 <- getSigmas( prob3, what = c("stderrors", "final") )
-	expSigma3 <- list(final.estimates = .removeMethName(getSigmas(prob3, what = "final")), 
-			standard.errors = .removeMethName(getSigmas(prob3, what = "stderrors")))
-	attr(expSigma3, "methodName") <- "Iterative Two Stage"
-	checkEquals(sigmaTest3,	expSigma3,	msg = " | getSigmas correct (3)")
+	sigmaTest3 <- getSigmas( prob3, what = "final" )
+	
+	checkEquals(sigmaTest3,	
+	            structure(0.0266, .Dim = c(1L, 1L), 
+	                      .Dimnames = list("EPS1","EPS1"), 
+	                      methodName = "Stochastic Approximation Expectation-Maximization"))
 	
 	# check multiple methods at once
 	

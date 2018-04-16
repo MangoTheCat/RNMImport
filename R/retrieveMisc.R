@@ -20,7 +20,7 @@ getEstimateCov <- function(obj, corMatrix = FALSE, invCorMatrix = FALSE, pdMatri
 setGeneric("getEstimateCov")
 
 getEstimateCov.NMRun <- function(obj, corMatrix = FALSE, invCorMatrix = FALSE, pdMatrix = FALSE,  
-		problemNum = 1, method = 1)	
+		problemNum = 1, method = length(obj@problems[[1]]@parameterCovMatrices))	
 {
 	getEstimateCov(getProblem(obj, problemNum), corMatrix = corMatrix, method = method)
 }
@@ -52,7 +52,8 @@ getEstimateCov.NMBasicModel <- function(obj, corMatrix = FALSE, invCorMatrix = F
 
 setMethod("getEstimateCov", signature(obj = "NMBasicModel"), getEstimateCov.NMBasicModel)
 
-getEstimateCov.NMBasicModelNM7 <- function(obj, corMatrix = FALSE, invCorMatrix = FALSE, pdMatrix = FALSE , method = 1)
+getEstimateCov.NMBasicModelNM7 <- function(obj, corMatrix = FALSE, invCorMatrix = FALSE, pdMatrix = FALSE , 
+                                           method = sum(sapply(obj@parameterCovMatrices, FUN = function(X) !is.null(X))))
 {
 	methodChosen <- .selectMethod(obj@methodNames, method)
 	parameterCovMatrix <- obj@parameterCovMatrices[[methodChosen]]
@@ -99,7 +100,7 @@ getObjective <- function(obj, addMinInfo = TRUE, ...)
 
 setGeneric("getObjective")
 
-getObjective.NMRun <- function(obj, addMinInfo=TRUE, subProblems=1, problemNum=1, method = 1)
+getObjective.NMRun <- function(obj, addMinInfo=TRUE, subProblems=1, problemNum=1, method = length(getMethodNames(obj)))
 {
 	getObjective(getProblem(obj, problemNum), addMinInfo, subProblems, method = method)
 }
@@ -127,7 +128,7 @@ getObjective.NMBasicModel <- function(obj, addMinInfo=TRUE, ...)
 
 setMethod("getObjective", signature(obj="NMBasicModel"), getObjective.NMBasicModel)
 
-getObjective.NMBasicModelNM7 <- function(obj, addMinInfo=TRUE, method = 1, ...)
+getObjective.NMBasicModelNM7 <- function(obj, addMinInfo=TRUE, method = length(getMethodNames(obj)), ...)
 {
 	
 	methodsChosen <- intersect(method, seq_along(obj@methodNames))
@@ -166,7 +167,7 @@ getObjective.NMSimModel <- function(obj, addMinInfo = TRUE, subProblems = 1,...)
 setMethod("getObjective", signature(obj="NMSimModel"), getObjective.NMSimModel)
 
 
-getObjective.NMSimModelNM7 <- function(obj, addMinInfo = TRUE, subProblems = 1, method = 1, ...)
+getObjective.NMSimModelNM7 <- function(obj, addMinInfo = TRUE, subProblems = 1, method = length(getMethodNames(obj)), ...)
 {	
 	
 	methodsChosen <- intersect(method, seq_along(obj@methodNames))

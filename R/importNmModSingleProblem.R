@@ -21,10 +21,11 @@
 	# find the existent sections in the current problem
 	titles <- sectionTitles(poppedTxt)	
 	# deal with THETAs
-#	browser()
-	prob$Theta <- if( "THE" %in% titles | "THT" %in% titles ) .importNmModTheta( txt = contents )
-	prob$Omega <- if("OME" %in% titles ) .importNmModOmega( txt = contents, component = "OMEGA")
-	prob$Sigma <- if( "SIG" %in% titles ) .importNmModOmega( txt = contents, component = "SIGMA" )
+	## MKS 08Jan2018 - remove comments that are on lines by themselves i.e. not inline with code
+	parContent <- sub( "^[[:space:]]*;(.*$)[[:space:]]*", "", contents)
+	prob$Theta <- if( "THE" %in% titles | "THT" %in% titles ) .importNmModTheta( txt=parContent )
+	prob$Omega <- if("OME" %in% titles ) .importNmModOmega( txt=parContent, component = "OMEGA")
+	prob$Sigma <- if( "SIG" %in% titles ) .importNmModOmega( txt=parContent, component = "SIGMA" )
 	
 	# extract any raw FORTRAN code
 	prob$Script <- fortranPop(poppedTxt, inPlace = TRUE)

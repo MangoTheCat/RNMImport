@@ -13,8 +13,8 @@
 
 .importNmModEst <- function(txt )
 {
-	estSectionText <- section(txt, "EST", oneline = FALSE, stripout = TRUE, glue = TRUE)
-	
+	estSectionText <- section( txt, "EST", "", glue = TRUE, 
+	         as.list = FALSE, stripout = TRUE, clean = TRUE)
 	# there is a possible bug in NONMEM 7 in its handling of NOTITLE.  It claims that 0 is the default value.
 	# However, the default is whatever the last explicitly statement value is.  This necessitates the following 
 	# variable
@@ -60,5 +60,5 @@
 	}
 	
 	parsedEstSections <- sapply(estSectionText, .parseEst)
-	t(parsedEstSections)
+  t(parsedEstSections)
 }
