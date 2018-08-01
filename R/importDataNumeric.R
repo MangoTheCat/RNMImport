@@ -6,8 +6,7 @@
 #' @return The data.frame with all columns that should be numeric, as numeric
 #' @author Mango Solutions
 #' @note Based on RNONMEM 1 code by R Pugh, J James, and R Francois
-#' @importFrom stats complete.cases
-#' @noRd
+
 
 .importDataNumeric <- function(myData, missToZero = TRUE)
 {

@@ -1,12 +1,10 @@
 
 #' Splits a single block of #METH statements into "sections".  This is similar to sectionLst, but only for a
 #' single block delimeted by #METH in NONMEM 7
-#'
 #' @title Split method text block into sections
 #' @param [C,+] methodContents Line of text in a #METH statement (includes the #METH line)
 #' @return [L, +] a named list of split text, with names corresponding to section names
 #' @author Mango Solutions
-#' @noRd
 
 sectionMethodBlock <- function(methodContents)
 {
@@ -74,7 +72,6 @@ sectionMethodBlock <- function(methodContents)
 #' @note Based on code by R. Francois
 #' @return A (partially) named list with relevant sections of the lst file.
 #' @author Mango Solutions
-#' @noRd
 
 sectionLst <- function( fileContents, sep, 
 		keep.all = FALSE, recurse = TRUE )
@@ -176,7 +173,6 @@ sectionLst <- function( fileContents, sep,
 #' @return a list with two elements: "text" and "title".  The latter is the title of the section 
 #' (e.g. "FINAL PARAMETER ESTIMATE"), the former is the text content without the titles
 #' @author Mango Solutions
-#' @noRd
 
 # Example section text:
 #
@@ -243,7 +239,6 @@ nmTitle <- function( txt, titleSecLength = 5, maxTitleLines = 2 ){
 #' @param lstContents [C,+] Contents of the lst file
 #' @return A list with two elements: the version and the level
 #' @author Mango Solutions
-#' @noRd
 
 nmVersion <- function(lstContents)
 {
@@ -259,11 +254,12 @@ nmVersion <- function(lstContents)
 }
 
 
-#' partitionLstSubproblems
+#' 
 #' @param contents A character vector of strings holding the lines of subproblem information (ONLY!) for one simulation problem
+#' @title partitionLstSubproblems
 #' @return list
 #' @author Mango Solutions
-#' @noRd
+#'
 
 partitionLstSubproblems <- function(contents)
 {
@@ -284,7 +280,6 @@ partitionLstSubproblems <- function(contents)
 #' @param item An element of the list returned by sectionLst
 #' @return NULL if item is NULL, minimum value of the objective function otherwise
 #' @author Mango Solutions
-#' @noRd
 
 # TODO: robustify this!
 
@@ -298,7 +293,6 @@ partitionLstSubproblems <- function(contents)
 #' @param txt vector of strings
 #' @return A character vector of the NONMEM variable names
 #' @author Mango Solutions
-#' @noRd
 
 .nmVariableNames <- function( txt )
 {
@@ -316,7 +310,6 @@ partitionLstSubproblems <- function(contents)
 #' @return A list of character vectors of split text.  Each element of the list will also have an attribute
 #' called "method.name".  This will denote the actual name of the method used for that chunk. 
 #' @author Mango Solutions
-#' @noRd
 
 partitionMethods <- function(lstProblemContents)
 {

@@ -1,22 +1,22 @@
 
-#' @title Parse $INPUT statement
-#' @name importNmModInput
-#' @aliases .importNmModInput
-#' @description Parses the $INPUT section of a NONMEM control file
+
+#' Parses the $INPUT section of a NONMEM control file
 #' @param txt Character vector of text containing an $INPUT statement, typically the 
 #' contents of a control file
 #' @param .extract Flag indicating whether this is the $INPUT section itself, or whether the section must first be
 #' extracted 
+#' @title Parse $INPUT statement
 #' @return a 2 column matrix mapping the variables in the input
 #' statement with the variables used by NONMEM, which can be different by setting
 #' aliases, e.g. ID=SUBJ in the $INPUT statement.  Also some may be dropped
-#' @examples
-#' .importNmModInput("$INPUT  ID DOSE=AMT TIME CP=DV")
 #' @author Mango Solutions
-#' @export
+#' 
 
-.importNmModInput <- function(txt, 
-    .extract = length(grep("\\$INPUT", toupper(txt))) > 0) {
+
+.importNmModInput <- function(txt, .extract = length(grep("\\$INPUT", toupper(txt))) > 0)
+{
+	
+	
 	### import the $INPUT section and collapse it into one line                   
 	inputSec <- if( .extract ) section( txt, "INP", "", stripout = TRUE, 
 						remove.comments = TRUE, as.list = FALSE, glue = TRUE ) else txt
@@ -38,4 +38,5 @@
 	# TODO: check the names against the structure they should have. from ?$DATA: 
 	# 1-4 letters (A-Z) and numerals (0-9), but it must begin with a letter.
 	out
+	
 }

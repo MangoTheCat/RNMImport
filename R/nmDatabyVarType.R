@@ -35,9 +35,6 @@ nmDatabyVarType.NMRun <- function(obj, varTypes, returnMode = c("singleDF", "DFL
 	nmDatabyVarType(getProblem(obj, problemNum), varTypes, returnMode, subProblemNum)
 }
 
-#' @rdname nmDatabyVarType
-#' @export
-
 setMethod("nmDatabyVarType", signature(obj="NMRun") ,nmDatabyVarType.NMRun)
 
 nmDatabyVarType.NMProblem <- function(obj, varTypes, returnMode = c("singleDF", "DFList"), subProblemNum=NA)
@@ -79,8 +76,5 @@ nmDatabyVarType.NMProblem <- function(obj, varTypes, returnMode = c("singleDF", 
 		
 	}
 }
-
-#' @rdname nmDatabyVarType
-#' @export
 
 setMethod("nmDatabyVarType", signature(obj="NMProblem") ,nmDatabyVarType.NMProblem)

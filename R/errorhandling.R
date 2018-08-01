@@ -6,7 +6,7 @@
 #' @return None
 #' @author Mango Solutions
 #' @keywords error
-#' @noRd
+#' @export
 
 RNMImportWarning <- function(msg = "Warning!\n", call = NULL)
 {
@@ -24,8 +24,7 @@ RNMImportWarning <- function(msg = "Warning!\n", call = NULL)
 #' @return None
 #' @author Mango Solutions
 #' @keywords error
-#' @noRd
-#' @importFrom utils dump.frames head
+#' @export
 
 RNMImportStop <- function(msg = "Error!\n",  call = NULL)
 {
@@ -36,8 +35,6 @@ RNMImportStop <- function(msg = "Error!\n",  call = NULL)
 	
 	stop(simpleError(msg, call))
 }
-
-if(getRversion() >= "2.15.1")  utils::globalVariables("last.dump")
 
 RNMImportStopifnot <-function(condition, msg = NULL, call = NULL)
 {

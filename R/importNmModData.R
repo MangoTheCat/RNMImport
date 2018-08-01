@@ -7,7 +7,7 @@
 #' @param .extract Logical flag.  If TRUE, assumes
 #' @return A matrix of descriptor information
 #' @author Mango Solutions
-#' @noRd
+#' 
 
 .importNmModData <- function(txt, modFile, 
         .extract = length(grep("^\\$DAT", toupper(txt))) > 0 ){
@@ -32,13 +32,13 @@
         wide <- ynPop( dataSec, "WIDE", default = FALSE, inPlace = TRUE)
         
         ### NULL                                                                    
-        null <- equalExpressionPop( dataSec, "NULL", absent = "", inPlace = TRUE)
+        null <- equalExpressionPop( dataSec, "NULL", absent = "", sep="=", inPlace = TRUE)
         
         ### REWIND, NOREWIND                                                        
         rewind <- ynPop( dataSec, "REWIND", default = FALSE, inPlace=TRUE)
         
         ### records, may be coded NRECS, NRECORDS, RECS, RECORDS                    
-        records <- equalExpressionPop( dataSec, "N?RECO?R?D?S", absent = "", inPlace = TRUE)
+        records <- equalExpressionPop( dataSec, "N?RECO?R?D?S", absent = "", sep="=",inPlace = TRUE)
         
         ### hunt for the IGNORE declaration      
         # this is the regular expression for detecting IGN[ORE] statements (there may be multiple)

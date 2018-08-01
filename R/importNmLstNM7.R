@@ -1,7 +1,6 @@
 
 
 #' This function parses
-#' @name importMethodBlock
 #' @param methodTextBlock 
 #' @title Parse report file #METH text block
 #' @return block result
@@ -95,7 +94,6 @@
 #' @title Import NONMEM 7 report file
 #' @return A list with various parsed components of the report file.
 #' @author Mango Solutions
-#' @noRd
 
 importNmReport.NM7 <- function( content, textReport = FALSE )
 {
@@ -171,7 +169,7 @@ importNmReport.NM7 <- function( content, textReport = FALSE )
 #' @title Import basic problem report results 
 #' @return a list containing final estimates, number of individuals, etc. for the problem 
 #' @author Mango Solutions
-#' @noRd 
+#' 
 
 .importNmLstBasicProb.NM7 <- function(contents)
 {
@@ -204,7 +202,7 @@ importNmReport.NM7 <- function( content, textReport = FALSE )
 #' @title import NONMEM7 simulation+model fit problem report contents
 #' @return out list
 #' @author Mango Solutions
-#' @noRd
+#' 
 
 importNmLstSimModel.NM7 <- function(contents, numSub = NA)
 {

@@ -9,7 +9,6 @@
 #' @param versionInfo [C, +] numeric vector that holds
 #' @return An NMBasicModel object holding the problem information
 #' @author Mango Solutions
-#' @exportClass NMBasicModelNM7
 
 NMBasicModelNM7 <- function(controlStatements, path, reportContents, dropInputColumns = FALSE, 
 		versionInfo = c("major" = "VII", "minor" = 1), conFile=NULL)
@@ -74,10 +73,10 @@ NMBasicModelNM7 <- function(controlStatements, path, reportContents, dropInputCo
 				corMatrices <- lapply(MethodResults, "[[", "CorrelationMatrix")
 				
 				# grab parameter initial values
-				thetaInitial <- t(controlStatements$Theta[,c("Lower","Est","Upper")])
+				thetaInitial <- t(controlStatements$Theta)
 				
 				# these may be missing in the control statements, so try to extract them from the reportContents
-				omegaInitial <- if(!is.null(controlStatements$Omega)) controlStatements$Omega$initialMatrix  else  MethodResults[[1]]$initialEstimates$OMEGA
+				omegaInitial <- if(!is.null(controlStatements$Omega)) controlStatements$Omega  else  MethodResults[[1]]$initialEstimates$OMEGA
 				
 				# grab dimensions of omega final estimates
 				omegaDim <- dim(MethodResults[[1]]$FinalEstimates$OMEGA)
@@ -91,7 +90,7 @@ NMBasicModelNM7 <- function(controlStatements, path, reportContents, dropInputCo
 				
 				else omegaDimNames <- dimnames(omegaInitial)
 				
-				sigmaInitial <- controlStatements$Sigma$initialMatrix
+				sigmaInitial <- controlStatements$Sigma
 				if(is.null(sigmaInitial)) sigmaInitial <- matrix()
 				rownames(thetaInitial) <- c("lowerBound", "initial", "upperBound")
 				

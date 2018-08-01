@@ -22,7 +22,6 @@ getSigmas <- function(obj, what = "final",  subProblemNum = 1, method = 1, probl
 {
 	RNMImportStop(msg = "This method is not implemented for this class!")
 }
-
 setGeneric("getSigmas")
 
 getSigmas.NMBasicModel <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
@@ -82,9 +81,6 @@ getSigmas.NMBasicModel <- function(obj, what = "final",  subProblemNum = 1, meth
 	res
 }
 
-#' @rdname getSigmas
-#' @export
-
 setMethod("getSigmas", signature(obj = "NMBasicModel"), getSigmas.NMBasicModel)
 
 getSigmas.NMBasicModelNM7 <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
@@ -92,8 +88,6 @@ getSigmas.NMBasicModelNM7 <- function(obj, what = "final",  subProblemNum = 1, m
 	getSigmasOrOmegas.NM7(obj, what = what, item = "sigma", method = method)
 }
 
-
-#' @export
 
 setMethod("getSigmas", signature(obj = "NMBasicModelNM7"), getSigmas.NMBasicModelNM7)
 
@@ -103,10 +97,6 @@ getSigmas.NMRun <- function(obj, what = "final",  subProblemNum = 1, method = 1,
 	sigmas <- getSigmas(dat, what = what, method = method, subProblemNum = subProblemNum)
 	sigmas
 }
-
-#' @rdname getSigmas
-#' @export
-
 setMethod("getSigmas", signature(obj = "NMRun"), getSigmas.NMRun)
 
 getSigmas.NMSimModel <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
@@ -138,9 +128,6 @@ getSigmas.NMSimModel <- function(obj, what = "final",  subProblemNum = 1, method
 	res
 }
 
-#' @rdname getSigmas
-#' @export
-
 setMethod("getSigmas", signature(obj = "NMSimModel"), getSigmas.NMSimModel)
 
 getSigmas.NMSimModelNM7 <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
@@ -148,18 +135,12 @@ getSigmas.NMSimModelNM7 <- function(obj, what = "final",  subProblemNum = 1, met
 	getSigmasOrOmegas.NM7(obj, what = what, item = "sigma", method = method, probType = "sim", subProblemNum = subProblemNum )
 }
 
-#' @rdname getSigmas
-#' @export
-
 setMethod("getSigmas", signature(obj = "NMSimModelNM7"), getSigmas.NMSimModelNM7)
 
 getSigmas.NMSimDataGen <- function(obj, what = "final",  subProblemNum = 1, method = 1, problemNum = 1)
 {
 	obj@sigmaInitial
 }
-
-#' @rdname getSigmas
-#' @export
 
 setMethod("getSigmas", signature(obj = "NMSimDataGen"), getSigmas.NMSimDataGen)
 
@@ -172,7 +153,5 @@ getSigmas.nmModel <- function(obj, what = "final",  subProblemNum = 1, method = 
 	probResults$Sigma
 	
 }
-
-#' @export
 
 setMethod("getSigmas", signature(obj = "nmModel"), getSigmas.nmModel)

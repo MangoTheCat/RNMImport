@@ -20,9 +20,6 @@
 #'  }
 #' @keywords IO
 #' @author Mango Solutions
-#' @importFrom stats median
-#' @importFrom utils count.fields
-#' @export
 
 
 readNmData <- function(
@@ -143,8 +140,6 @@ readNmData <- function(
 #' @param link Token that joins statements together 
 #' @return Subsetted data as a data.frame
 #' @author Mango Solutions
-#' @noRd
-#' @export
 
 
 # Based on code by R. Francois

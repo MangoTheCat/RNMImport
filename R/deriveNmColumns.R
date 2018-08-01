@@ -5,7 +5,7 @@
 #' @title Rename certain NONMEM columns
 #' @return data.frame
 #' @author Mango Solutions
-#' @noRd
+
 
 .deriveNmColumns <- function(df)
 {

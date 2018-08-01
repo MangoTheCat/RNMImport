@@ -6,7 +6,6 @@
 #' @return a list with elements "THETA", "OMEGA" and "SIGMA", holding vectors and matrices
 #' 
 #' @author Mango Solutions
-#' @noRd
 
 .importNmLstEstimates <- function( txt, onlyDiag = FALSE  )
 {

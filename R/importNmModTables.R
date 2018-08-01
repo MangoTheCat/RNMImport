@@ -8,8 +8,7 @@
 #' @return A data.frame of descriptor information about each line in the $TABLE statement, including
 #' which columns are to be written, whether there is a header or not, etc.
 #' @author Mango Solutions
-#' @noRd
-#' @export 
+#' 
 
 .importNmModTables <- function
 (
@@ -36,11 +35,11 @@
 		x <- gsub("\\)", ".", x)
 		
 		# TODO: If FILE is missing, need to handle this gracefully, since this might be allowed
-		fileName <- equalExpressionPop(x, "FILE", inPlace = TRUE)
+		fileName <- equalExpressionPop(x, "FILE", inPlace = TRUE,sep="=")
 		RNMImportStopifnot(!is.null(fileName), match.call())
 
         ### handle the FORMAT=,1PE11.4 like statements
-        format.of.table = equalExpressionPop(x, "FORMAT", inPlace=TRUE)
+        format.of.table = equalExpressionPop(x, "FORMAT", inPlace=TRUE, sep = '=' )
 
 		### handle the HEADER
 		noHeader <- !ynPop( x, "HEADER", yes.prefix = "ONE", default = TRUE , inPlace = TRUE)

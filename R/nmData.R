@@ -33,11 +33,14 @@
 #'  print(summary(y.outputData))
 #' }
 #' @keywords utilities datagen
+#' 
  
+
+# TODO: add option to extract from derived data
+
 nmData <- function(obj, dataTypes = c("input", "output") , returnMode = c("singleDF", "DFList"), 
 		subset = NULL, ...)
 {
-        # TODO: add option to extract from derived data
 	returnMode <- match.arg(returnMode)
 	RNMImportStop("This method is not implemented for this class\n")
 }
@@ -49,7 +52,6 @@ setGeneric("nmData")
 #' @param subset The subset parameter passed to nmData - a logical, NULL, or a character vector
 #' @return NULL or a character vector
 #' @author Mango Solutions
-#' @noRd
 
 .getSubset <- function(obj, subset)
 {
@@ -62,8 +64,6 @@ setGeneric("nmData")
 	else
 		subset
 }
-
-if (getRversion() >= "2.15.1") utils::globalVariables("NSIM")
 
 nmData.NMBasicModel <- function(obj, dataTypes = c("input", "output") , returnMode = c("singleDF", "DFList"),
 		subset = NULL, ...)
@@ -131,13 +131,7 @@ nmData.NMBasicModel <- function(obj, dataTypes = c("input", "output") , returnMo
 	applyDataSubset( cbind(res, clashIn), dataSub )
 }
 
-#' @rdname nmData
-#' @export
-
 setMethod("nmData", signature(obj = "NMBasicModel"), nmData.NMBasicModel)
-
-#' @export
-
 setMethod("nmData", signature(obj = "NMBasicModelNM7"), nmData.NMBasicModel)
 
 nmData.NMSim<- function(obj, dataTypes = c("input", "output") , 
@@ -226,19 +220,8 @@ nmData.NMSim<- function(obj, dataTypes = c("input", "output") ,
 	
 }
 
-#' @rdname nmData
-#' @export
-
 setMethod("nmData", signature(obj = "NMSimDataGen"), nmData.NMSim)
-
-#' @rdname nmData
-#' @export
-
 setMethod("nmData", signature(obj = "NMSimModel"), nmData.NMSim)
-
-#' @rdname nmData
-#' @export
-
 setMethod("nmData", signature(obj = "NMSimModelNM7"), nmData.NMSim)
 
 nmData.NMRun <- function(obj, dataTypes = c("input", "output") , returnMode = c("singleDF", "DFList"),
@@ -247,8 +230,5 @@ nmData.NMRun <- function(obj, dataTypes = c("input", "output") , returnMode = c(
 	returnMode <- match.arg(returnMode)
 	nmData(getProblem(obj, problemNum),dataTypes,returnMode, subset = subset, subProblemNum)
 }
-
-#' @rdname nmData
-#' @export
 
 setMethod("nmData", signature(obj = "NMRun"), nmData.NMRun)

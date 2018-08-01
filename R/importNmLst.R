@@ -17,7 +17,7 @@
 #' @title Import simulation+fit report 
 #' @return A list with parsed elements
 #' @author Mango Solutions
-#' @noRd
+#' 
 
 importNmLstSimModel <- function(contents, numSub = NA)
 {
@@ -105,7 +105,6 @@ importNmLstSimModel <- function(contents, numSub = NA)
 #' @title Import basic problem report results 
 #' @return a list containing final estimates, number of individuals, etc. for the problem 
 #' @author Mango Solutions
-#' @noRd
 
 .importNmLstBasicProb <- function(contents)
 {
@@ -142,7 +141,7 @@ importNmLstSimModel <- function(contents, numSub = NA)
 #' @return A list with 2 elements: nRecords and nIndividuals, holding the number of individuals and number of
 #' records in the problem respectively
 #' @author Mango Solutions
-#' @noRd
+#' 
 
 importNmLstSimDataGen <- function(contents)
 {
@@ -182,7 +181,7 @@ importNmLstSimDataGen <- function(contents)
 #' @title Import report file based on control statements
 #' @return List of parsed report file statements
 #' @author Mango Solutions
-#' @noRd
+#' 
 
 # TODO: suppress this?  It should be possible to fully import a list file without a control file, and then there
 # would be no sense in maintaining this function
@@ -255,7 +254,6 @@ importNmLstSimDataGen <- function(contents)
 #'      x <- importNmReport("theoph.lst", path = "examples/theoph")
 #'      print(x)
 #' }
-#' @export
 
 importNmReport <- function( fileName, path = NULL, controlStatements = NULL, textReport = FALSE)
 {          
@@ -330,7 +328,7 @@ importNmReport <- function( fileName, path = NULL, controlStatements = NULL, tex
 #' @title Clean report file
 #' @return character vector of strings without extraneous content
 #' @author Mango Solutions
-#' @noRd
+#' 
 
 cleanReportContents <- function(content)
 {

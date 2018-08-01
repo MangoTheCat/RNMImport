@@ -26,9 +26,6 @@ getIterations.NMRun <- function(obj, problemNum = 1)
 	return(getIterations(getProblem(obj, problemNumber = problemNum)))
 }
 
-#' @rdname getIterations
-#' @export
-
 setMethod("getIterations", signature(obj = "NMRun"), getIterations.NMRun)
 
 getIterations.NMProb <- function(obj, problemNum = 1)
@@ -36,12 +33,5 @@ getIterations.NMProb <- function(obj, problemNum = 1)
 	obj@parameterIterations
 }
 
-#' @rdname getIterations
-#' @export
-
 setMethod("getIterations", signature(obj = "NMBasicModel"), getIterations.NMProb)
-
-#' @rdname getIterations
-#' @export
-
 setMethod("getIterations", signature(obj = "NMBasicModelNM7"), getIterations.NMProb)

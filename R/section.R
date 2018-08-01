@@ -28,7 +28,6 @@ sectionStart <- function(
 #' @title section
 #' @return A list of character vectors, where each element of the list is a section of the control file
 #' @author Mango Solutions
-#' @noRd
 
 # Originally by R. Francois
 
@@ -50,7 +49,7 @@ section <- function(
 {
 	# TODO: More comments
  
-	startPos <- if(is.null(startSection)) 1 else sectionStart( text = toupper(text), pattern = startpattern )
+	startPos <- if(is.null(start)) 1 else sectionStart( text = toupper(text), pattern = startpattern )
 	
 	out <- list( )
 	l.text <- length(text)
@@ -64,7 +63,7 @@ section <- function(
 			textEnd <- startPos[index+1]-1
 		remainingText <- text[ seq( from = startPos[index], to = textEnd ) ]
 		out.index <- if(oneline) remainingText[1] else 
-				if( is.null(endSection) || length(remainingText)==1 || !length(grep(endpattern, remainingText[-1]))) remainingText 
+				if( is.null(end) || length(remainingText)==1 || !length(grep(endpattern, remainingText[-1]))) remainingText 
 				else {
 					remainingText[ 
 							1:sectionStart( text = remainingText[-1], pattern = endpattern )[1] ]    

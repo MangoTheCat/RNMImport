@@ -10,7 +10,7 @@
 #' @param ... 
 #' @return A matrix if just the covariance matrix is required, a list of matrices otherwise
 #' @author Mango Solutions
-#' @export
+#'
 
 getEstimateCov <- function(obj, corMatrix = FALSE, invCorMatrix = FALSE, pdMatrix = FALSE, ...)
 {
@@ -24,9 +24,6 @@ getEstimateCov.NMRun <- function(obj, corMatrix = FALSE, invCorMatrix = FALSE, p
 {
 	getEstimateCov(getProblem(obj, problemNum), corMatrix = corMatrix, method = method)
 }
-
-#' @rdname getEstimateCov
-#' @export
 
 setMethod("getEstimateCov", signature(obj = "NMRun"), getEstimateCov.NMRun)
 
@@ -46,9 +43,6 @@ getEstimateCov.NMBasicModel <- function(obj, corMatrix = FALSE, invCorMatrix = F
 	else list("covariance" = obj@parameterCovMatrix, "correlation" = obj@parameterCorMatrix)
 	
 }
-
-#' @rdname getEstimateCov
-#' @export
 
 setMethod("getEstimateCov", signature(obj = "NMBasicModel"), getEstimateCov.NMBasicModel)
 
@@ -104,9 +98,6 @@ getObjective.NMRun <- function(obj, addMinInfo=TRUE, subProblems=1, problemNum=1
 	getObjective(getProblem(obj, problemNum), addMinInfo, subProblems, method = method)
 }
 
-#' @rdname getObjective
-#' @export
-
 setMethod("getObjective", signature(obj="NMRun"), getObjective.NMRun)
 
 getObjective.NMBasicModel <- function(obj, addMinInfo=TRUE, ...)
@@ -121,9 +112,6 @@ getObjective.NMBasicModel <- function(obj, addMinInfo=TRUE, ...)
 	}
 	objective
 }
-
-#' @rdname getObjective
-#' @export
 
 setMethod("getObjective", signature(obj="NMBasicModel"), getObjective.NMBasicModel)
 
@@ -160,9 +148,6 @@ getObjective.NMSimModel <- function(obj, addMinInfo = TRUE, subProblems = 1,...)
 	obj@objectiveFinal[subProblems]
 }
 
-#' @rdname getObjective
-#' @export
-
 setMethod("getObjective", signature(obj="NMSimModel"), getObjective.NMSimModel)
 
 
@@ -178,9 +163,6 @@ getObjective.NMSimModelNM7 <- function(obj, addMinInfo = TRUE, subProblems = 1, 
 	objective
 }
 
-#' @rdname getObjective
-#' @export
-
 setMethod("getObjective", signature(obj="NMSimModelNM7"), getObjective.NMSimModelNM7)
 
 
@@ -190,7 +172,7 @@ setMethod("getObjective", signature(obj="NMSimModelNM7"), getObjective.NMSimMode
 #' @return A data.frame with 2 rows, 1 describing the report file and the other the control file
 #' @author Mango Solutions
 #' @keywords utility
-#' @export
+#'
 
 getFileinfo <- function(run)
 {
@@ -198,14 +180,7 @@ getFileinfo <- function(run)
 	rbind("controlFile" = run@controlFileInfo, "reportFile" = run@reportFileInfo)
 }
 
-#' @rdname getFileinfo
-#' @export
-
 getReporttext <- function(run) 	run@reportText
-
-#' @rdname getFileinfo
-#' @export
-
 getControltext <- function(run) run@controlText
 
 
@@ -230,9 +205,6 @@ getControlStatements.NMRun <- function(obj, problemNum = 1)
 	getControlStatements(getProblem(obj, problemNum))
 }
 
-#' @rdname getControlStatements
-#' @export
-
 setMethod("getControlStatements", signature(obj = "NMRun"), getControlStatements.NMRun)
 
 getControlStatements.NMProblem <- function(obj, ...) 
@@ -240,8 +212,6 @@ getControlStatements.NMProblem <- function(obj, ...)
 	obj@controlStatements
 }
 
-#' @rdname getControlStatements
-#' @export
 
 setMethod("getControlStatements", signature(obj = "NMProblem"), getControlStatements.NMProblem)
 
@@ -267,14 +237,7 @@ getNmVersion.NMRunProb <- function(obj)
 	versionInfo
 }
 
-#' @rdname getNmVersion
-#' @export
-
 setMethod("getNmVersion", signature(obj = "NMRun"), getNmVersion.NMRunProb)
-
-#' @rdname getNmVersion
-#' @export
-
 setMethod("getNmVersion", signature(obj = "NMProblem"), getNmVersion.NMRunProb)
 
 #' Extract information simulation information from a simulation problem
@@ -302,9 +265,6 @@ getSimInfo.NMRun <- function(obj, problemNum = 1, addRawInfo = TRUE)
 	getSimInfo(getProblem(obj, problemNumber = problemNum), addRawInfo = addRawInfo)
 }
 
-#' @rdname getSimInfo
-#' @export
-
 setMethod("getSimInfo", signature(obj = "NMRun"), getSimInfo.NMRun)
 
 getSimInfo.NMSim <- function(obj, problemNum = 1, addRawInfo = TRUE)
@@ -322,17 +282,6 @@ getSimInfo.NMSim <- function(obj, problemNum = 1, addRawInfo = TRUE)
 	simInfo
 }
 
-#' @rdname getSimInfo
-#' @export
-
 setMethod("getSimInfo", signature(obj = "NMSimModelNM7"), getSimInfo.NMSim)
-
-#' @rdname getSimInfo
-#' @export
-
 setMethod("getSimInfo", signature(obj = "NMSimDataGen"), getSimInfo.NMSim)
-
-#' @rdname getSimInfo
-#' @export
-
 setMethod("getSimInfo", signature(obj = "NMSimModel"), getSimInfo.NMSim)

@@ -1,6 +1,6 @@
 
 #' Imports a single NONMEM problem into a list structure
-#' @name importNmModSingleProblem
+#' @name .importNmModSingleProblem
 #' @title Import Single NONMEM problem
 #' @param contents Text of the contents of a SINGLE problem statement
 #' @param fileName Name of the control file from which the problem originates

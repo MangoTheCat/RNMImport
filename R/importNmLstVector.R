@@ -1,7 +1,6 @@
 
 
 #' Reads a "vector" stored in the text of a list file
-#' @name importNmLstVector
 #' @param text Vector of strings of text of a list file
 #' @return A named numeric vector
 #' @author Mango Solutions

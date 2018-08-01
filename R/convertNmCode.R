@@ -8,7 +8,6 @@
 #' @note Based on code originally by R. Francois
 #' @return A list (or vector) of expressions holding the converted "models"
 #' @author Mango Solutions
-#' @noRd
 
 convertNm <- function(
 		model, 

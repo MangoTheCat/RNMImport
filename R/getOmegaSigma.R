@@ -9,7 +9,6 @@
 #' @title Get sigmas or omegas
 #' @return A list or a matrix, depending on whether multiple methods and items are are selected.  
 #' @author Mango Solutions
-#' @noRd
 
 getSigmasOrOmegas.NM7 <- function(obj, what = "final", item = c("sigma", "omega"), method = 1, probType = c("basic", "sim"), subProblemNum = 1)
 {

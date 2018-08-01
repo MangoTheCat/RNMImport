@@ -28,17 +28,11 @@ addedData.NMRun <-function(obj, problemNum = 1)
 	addedData(getProblem(obj, problemNumber = 1))
 }
 
-#' @rdname addedData
-#' @export
-
 setMethod("addedData", signature(obj = "NMRun"), addedData.NMRun)
 
 addedData.NMProblem <- function(obj)
 {
 	obj@additionalVars
 }
-
-#' @rdname addedData
-#' @export
 
 setMethod("addedData", signature(obj = "NMProblem"), addedData.NMProblem)

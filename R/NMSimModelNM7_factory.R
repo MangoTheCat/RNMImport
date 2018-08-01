@@ -6,7 +6,6 @@
 #' @param reportContents Parsed contents of the report file
 #' @return Newly constructed object of class NMSimModelNM7
 #' @author Mango Solutions
-#' @noRd
 
 NMSimModelNM7 <- function(controlStatements, path, reportContents, versionInfo = c("major" = "VII", "minor" = 1))
 {
@@ -70,7 +69,6 @@ NMSimModelNM7 <- function(controlStatements, path, reportContents, versionInfo =
 #' @param numMethods Number of methods used
 #' @title Rearrange parameter estimates
 #' @return A list of estimates by method used
-#' @noRd
 
 
 .rearrangeEstimates <- function(matrixList, nSim, numMethods)

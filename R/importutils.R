@@ -8,7 +8,6 @@
 #' @title Import table files safely
 #' @return The value returned by importModelOutputTables
 #' @author Mango Solutions
-#' @noRd
 
 .importTablesSafely <- function(tableStatement = NULL, path = "")
 {
@@ -43,7 +42,6 @@
 #' @return Character vectors of lines of file contents
 #' @author Mango Solutions
 #' @keywords IO
-#' @noRd
 
 # Original author: R. Francois
 
@@ -69,7 +67,6 @@ scanFile <- function( file, empty.rx = "^[[:space:]]*$" )
 #' @note Originally by John James
 #' @author Mango Solutions
 #' @keywords IO
-#' @noRd
 
 .canOpen <- function(path.to.file)
 {
@@ -93,7 +90,6 @@ scanFile <- function( file, empty.rx = "^[[:space:]]*$" )
 #' @param x Path to the file 
 #' @return String containing absolute path
 #' @author Mango Solutions
-#' @noRd
 
 dirname.abs <- function(x){
 	dirname( tools::file_path_as_absolute(x) )
@@ -105,7 +101,6 @@ dirname.abs <- function(x){
 #' @return logical, TRUE if x is a path
 #' @author Mango Solutions
 #' @keywords utils
-#' @noRd
 
 .isfullpath <- function( x ){
 	# x %~% "^(/|\\\\|[[:alpha:]]:)"
@@ -118,7 +113,6 @@ dirname.abs <- function(x){
 #' @title isinpath
 #' @return logic
 #' @author Mango Solutions
-#' @noRd
 #' 
 
 .isinpath <- function( file, path){
@@ -134,7 +128,6 @@ dirname.abs <- function(x){
 #' @param remove (?)
 #' @return A full relative path containing the file name
 #' @author Mango Solutions
-#' @noRd
 
 
 .getFile <- function( 
@@ -173,7 +166,6 @@ dirname.abs <- function(x){
 #' @param path the path to process.
 #' @return Either path unmodified, or path retrieved via getNmPath
 #' @author Mango Solutions
-#' @noRd
 
 processPath <- function(path)
 {
@@ -191,7 +183,6 @@ processPath <- function(path)
 #' @param extension Extension of the file to check.  Can have more than one
 #' @return whether or not the filename has the given extension 
 #' @author Mango Solutions
-#' @noRd
 
 hasExtension <- function(fileName, extensions)
 {
@@ -205,7 +196,6 @@ hasExtension <- function(fileName, extensions)
 #' @param fileName  
 #' @return fileName in lower case, 
 #' @author Mango Solutions
-#' @noRd
 
 
 .windowsToLower <- function(fileName)
@@ -219,8 +209,7 @@ hasExtension <- function(fileName, extensions)
 #' @param pri 
 #' @return does the string, basically PRIOR, exist in the control file?
 #' @author Mango Solutions
-#' @noRd
-.lookFor <- function(contStates, subr=NULL, pri='^ +[$](PRIOR|PRI)|PRIOR='){
+.lookFor <- function(contStates=names(obj@controlStatements), subr=NULL, pri='^ +[$](PRIOR|PRI)|PRIOR='){
 	test2 <- FALSE
 	test1 <- any(regexpr(pri, contStates, ignore.case=TRUE)>0)
 	if(length(subr)>0){

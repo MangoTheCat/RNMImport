@@ -1,7 +1,6 @@
 
 
 #' Parses the $PRIOR statement of NONMEM 7 control files.  The parsed statement is turned into a named vector
-#' @name importNmModPrior
 #' @title Parse PRIOR statement
 #' @param txt Control file text containing a $PRIOR statement 
 #' @param rx 

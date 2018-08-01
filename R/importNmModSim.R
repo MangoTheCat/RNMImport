@@ -7,8 +7,6 @@
 #' @return A character vector holding the number of simulation subproblems, the 2 seed values, and
 #'  whether or not SIMONLY is TRUE or FALSE
 #' @author Mango Solutions
-#' @noRd
-#' @export
 
 
 .importNmModSim <- function(
@@ -29,7 +27,7 @@
 	# determine whether this is data generating-only simulation
 	simOnly <- any(regexMatches(txt, rx = "ONLY"))
 	# TODO: correct the regular expression used to indicate simonly statements
-	listToRemove <- c("REQUESTFIRST", "REQUESTSECOND", 
+	listToRemove <- c("NEW", "REQUESTFIRST", "REQUESTSECOND", 
 			"NOPREDICTION", "PREDICTION", "OMITTED", "ONLYSIMULATION")
 	txt <- killRegex( txt, listToRemove )
 	### extract the seeds                                                         
@@ -41,7 +39,7 @@
 	# using shorcut because PROB can be one of : 
 	# NSUBPROBS, NSUBPROBLEMS, SUBPROBLEMS, NPROBLEMS, ...
 	# another way is to use "N?S?U?B?PROBL?E?M?S" instead of "PROB"
-	nSub <- equalExpressionPop( txt, "PROB", absent = 1, shortcut = TRUE, inPlace = TRUE )
+	nSub <- equalExpressionPop( txt, "PROB", absent = 1, shortcut = TRUE, sep = "=", inPlace = TRUE )
 	if( nSub == 1) nSub <- equalExpressionPop( txt, "SUB", absent = 1, shortcut = TRUE, inPlace = TRUE )
 	
 	### the TRUE option                                                           
@@ -50,7 +48,7 @@
 	
 	### build the output structure                                                
 	out <- c( "nSub" = nSub, "Seed1" = Seed1, "Seed2" = Seed2, "TRUE" = true, "simOnly" = simOnly )
-    attr(out, "rawStatement") <- simStatement
+	attr(out, "rawStatement") <- simStatement
 	out 
 	
 }

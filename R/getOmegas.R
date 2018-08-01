@@ -20,12 +20,12 @@
 #'      x <- importNm("theoph.con", path = "examples/theoph")
 #'      getOmegas(x, what = c("initial", "final")) 
 #' }
+#' 
 
 getOmegas <- function(obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1)
 {
 	RNMImportStop(msg = "This method is not implemented for this class!")
 }
-
 setGeneric("getOmegas")
 
 getOmegas.NMBasicModel <- function(obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1)
@@ -82,9 +82,6 @@ getOmegas.NMBasicModel <- function(obj, what = "final", subProblemNum = 1, metho
 	res
 }
 
-#' @rdname getOmegas
-#' @export
-
 setMethod("getOmegas", signature(obj = "NMBasicModel"), getOmegas.NMBasicModel)
 
 
@@ -104,8 +101,6 @@ getOmegas.NMBasicModelNM7 <- function(obj, what = "final", subProblemNum = 1, me
 	getSigmasOrOmegas.NM7(obj, what = what, item = "omega", method = method )
 }
 
-#' @export
-
 setMethod("getOmegas", signature(obj = "NMBasicModelNM7"), getOmegas.NMBasicModelNM7)
 
 getOmegas.NMRun <- function( obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1 )
@@ -114,10 +109,6 @@ getOmegas.NMRun <- function( obj, what = "final", subProblemNum = 1, method = 1,
 	omegas <- getOmegas(dat, what = what, method = method, subProblemNum = subProblemNum)
 	omegas
 }
-
-#' @rdname getOmegas
-#' @export
-
 setMethod("getOmegas", signature(obj = "NMRun"), getOmegas.NMRun)
 
 getOmegas.NMSimModel <- function( obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1 )
@@ -147,29 +138,18 @@ getOmegas.NMSimModel <- function( obj, what = "final", subProblemNum = 1, method
 	
 	res
 }
-
-#' @rdname getOmegas
-#' @export
-
 setMethod("getOmegas", signature(obj = "NMSimModel"), getOmegas.NMSimModel)
 
 getOmegas.NMSimModelNM7 <- function(obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1)
 {
 	getSigmasOrOmegas.NM7(obj, what = what, item = "omega", method = method, probType = "sim", subProblemNum = subProblemNum )
 }
-
-#' @rdname getOmegas
-#' @export
-
 setMethod("getOmegas", signature(obj = "NMSimModelNM7"), getOmegas.NMSimModelNM7)
 
 getOmegas.NMSimDataGen <- function( obj, what = "final", subProblemNum = 1, method = 1, problemNum = 1 )
 {
 	obj@omegaInitial
 }
-
-#' @rdname getOmegas
-#' @export
 
 setMethod("getOmegas", signature(obj = "NMSimDataGen"), getOmegas.NMSimDataGen)
 
@@ -182,7 +162,5 @@ getOmegas.nmModel <- function( obj, what = "initial", subProblemNum = 1, method 
 	probResults$Omega
 	
 }
-
-#' @export
 
 setMethod("getOmegas", signature(obj = "nmModel"), getOmegas.nmModel)

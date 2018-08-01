@@ -9,7 +9,6 @@
 #' @param path path where the data files are located
 #' @return  A data.frame with the data inside the file
 #' @author Mango Solutions
-#' @noRd
 
 importModelData <- function(
 		dataStatement, inputStatement, dropCols = TRUE, trim=FALSE,	path = NULL, duplicateAliased = TRUE)
